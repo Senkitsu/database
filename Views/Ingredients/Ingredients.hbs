@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-12">
+        <h1>Ингредиенты</h1>
+        <hr>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-12">
+        <a href="/ingredients/add" class="btn btn-success">+ Добавить ингредиент</a>
+    </div>
+</div>
+
+{{#if ingredients.length}}
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Единица измерения</th>
+                    <th>Используется в блюдах</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each ingredients}}
+                <tr>
+                    <td><strong>{{this.name}}</strong></td>
+                    <td>{{this.unit}}</td>
+                    <td>
+                        <span class="badge bg-info">{{this.usage_count}}</span>
+                    </td>
+                    <td>
+                        <a href="/ingredients/{{this.id}}/edit" class="btn btn-sm btn-warning">Редактировать</a>
+                        <form method="POST" action="/ingredients/{{this.id}}/delete" style="display:inline;" onsubmit="return confirm('Вы уверены, что хотите удалить этот ингредиент?');">
+                            <button type="submit" class="btn btn-sm btn-danger">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>
+{{else}}
+<div class="alert alert-info">
+    Ингредиенты не найдены. <a href="/ingredients/add">Добавьте первый ингредиент</a>.
+</div>
+{{/if}}

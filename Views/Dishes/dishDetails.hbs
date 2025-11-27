@@ -1,0 +1,83 @@
+<div class="row">
+    <div class="col-md-12">
+        <h1>{{dish.name}}</h1>
+        <hr>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Информация о блюде</h5>
+
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th style="width: 30%;">Категория:</th>
+                            <td>{{dish.category_name}}</td>
+                        </tr>
+                        {{#if dish.description}}
+                        <tr>
+                            <th>Описание:</th>
+                            <td>{{dish.description}}</td>
+                        </tr>
+                        {{/if}}
+                        <tr>
+                            <th>Цена:</th>
+                            <td><strong>{{dish.price}} руб.</strong></td>
+                        </tr>
+                        {{#if dish.weight}}
+                        <tr>
+                            <th>Вес:</th>
+                            <td>{{dish.weight}} г</td>
+                        </tr>
+                        {{/if}}
+                        <tr>
+                            <th>Доступность:</th>
+                            <td>
+                                {{#if dish.is_available}}
+                                    <span class="badge bg-success">Доступно</span>
+                                {{else}}
+                                    <span class="badge bg-danger">Недоступно</span>
+                                {{/if}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                {{#if ingredients.length}}
+                <h5 class="mt-4">Состав блюда</h5>
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Ингредиент</th>
+                            <th>Количество</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each ingredients}}
+                        <tr>
+                            <td>{{this.name}}</td>
+                            <td>{{this.quantity}} {{this.unit}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+                {{else}}
+                <div class="alert alert-info mt-3">
+                    Информация о составе блюда отсутствует.
+                </div>
+                {{/if}}
+            </div>
+        </div>
+
+        <div class="mt-3">
+            <a href="/dishes/{{dish.id}}/edit" class="btn btn-warning">Редактировать</a>
+            <a href="/dishes" class="btn btn-secondary">Вернуться к списку</a>
+            <form method="POST" action="/dishes/{{dish.id}}/delete" style="display:inline;" onsubmit="return confirm('Вы уверены, что хотите удалить это блюдо?');">
+                <button type="submit" class="btn btn-danger">Удалить</button>
+            </form>
+        </div>
+    </div>
+</div>

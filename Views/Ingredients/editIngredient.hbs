@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-md-12">
+        <h1>Редактировать ингредиент</h1>
+        <hr>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <form method="POST" action="/ingredients/{{ingredient.id}}/edit">
+            <div class="mb-3">
+                <label for="name" class="form-label">Название ингредиента *</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ingredient.name}}" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="unit" class="form-label">Единица измерения *</label>
+                <select class="form-select" id="unit" name="unit" required>
+                    <option value="г" {{#if (eq ingredient.unit 'г')}}selected{{/if}}>граммы (г)</option>
+                    <option value="мл" {{#if (eq ingredient.unit 'мл')}}selected{{/if}}>миллилитры (мл)</option>
+                    <option value="шт" {{#if (eq ingredient.unit 'шт')}}selected{{/if}}>штуки (шт)</option>
+                    <option value="л" {{#if (eq ingredient.unit 'л')}}selected{{/if}}>литры (л)</option>
+                    <option value="кг" {{#if (eq ingredient.unit 'кг')}}selected{{/if}}>килограммы (кг)</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                <a href="/ingredients" class="btn btn-secondary">Отмена</a>
+            </div>
+        </form>
+    </div>
+</div>

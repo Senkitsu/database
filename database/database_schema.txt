@@ -1,0 +1,84 @@
+┌─────────────────────────────────────┐
+│           FACULTIES                 │
+│  (Факультеты)                       │
+├─────────────────────────────────────┤
+│ PK  id              SERIAL          │
+│     name            VARCHAR(100)    │
+│     dean            VARCHAR(100)    │
+│     dean_position   VARCHAR(100)    │
+│     phone           VARCHAR(20)     │
+│     email           VARCHAR(100)    │
+│     description     TEXT            │
+└─────────────────────────────────────┘
+                │
+                │ 1
+                │
+                │
+                │ N
+┌─────────────────────────────────────┐
+│          DEPARTMENTS                │
+│  (Кафедры)                          │
+├─────────────────────────────────────┤
+│ PK  id              SERIAL          │
+│     name            VARCHAR(100)    │
+│ FK  faculty_id      INTEGER         │
+│     head_name       VARCHAR(100)    │
+│     phone           VARCHAR(20)     │
+│     email           VARCHAR(100)    │
+└─────────────────────────────────────┘
+                │
+                │ 1
+                │
+                │
+                │ N
+┌─────────────────────────────────────┐    ┌─────────────────────────────────────┐
+│           TEACHERS                  │    │           COURSES                   │
+│  (Преподаватели)                    │    │  (Дисциплины)                       │
+├─────────────────────────────────────┤    ├─────────────────────────────────────┤
+│ PK  id              SERIAL          │    │ PK  id              SERIAL          │
+│     first_name      VARCHAR(50)     │    │     name            VARCHAR(200)    │
+│     last_name       VARCHAR(50)     │    │ FK  department_id   INTEGER         │
+│     email           VARCHAR(100)    │    │     hours_lecture   INTEGER         │
+│     phone           VARCHAR(20)     │    │     hours_practice  INTEGER         │
+│ FK  department_id   INTEGER         │    │     hours_lab       INTEGER         │
+│     position        VARCHAR(100)    │    │     description     TEXT            │
+│     degree          VARCHAR(100)    │    └─────────────────────────────────────┘
+└─────────────────────────────────────┘
+                │                                │
+                │                                │
+                │                                │
+                │                                │
+                │ N                             │ N
+                │                               │
+                │                               │
+                │                               │
+                │                               │
+                │      ┌─────────────────────────────────────┐
+                │      │           SCHEDULES                │
+                │      │  (Расписание занятий)              │
+                └──────├─────────────────────────────────────┤
+                       │ PK  id              SERIAL          │
+                       │ FK  course_id       INTEGER         │
+                       │ FK  teacher_id      INTEGER         │
+                       │ FK  group_id        INTEGER         │
+                       │ FK  classroom_id    INTEGER         │
+                       │     day_of_week     INTEGER         │
+                       │     start_time      TIME            │
+                       │     end_time        TIME            │
+                       │     lesson_type     VARCHAR(20)     │
+                       └─────────────────────────────────────┘
+                                       │
+                                       │ N
+                                       │
+                                       │
+                                       │ 1
+                    ┌─────────────────────────────────────┐    ┌─────────────────────────────────────┐
+                    │        STUDENT_GROUPS              │    │          CLASSROOMS                 │
+                    │  (Учебные группы)                  │    │  (Аудитории)                        │
+                    ├─────────────────────────────────────┤    ├─────────────────────────────────────┤
+                    │ PK  id              SERIAL          │    │ PK  id              SERIAL          │
+                    │     name            VARCHAR(50)     │    │     number          VARCHAR(20)     │
+                    │ FK  faculty_id      INTEGER         │    │     type            VARCHAR(50)     │
+                    │     student_count   INTEGER         │    │     capacity        INTEGER         │
+                    └─────────────────────────────────────┘    │     equipment       TEXT            │
+                                                               └─────────────────────────────────────┘

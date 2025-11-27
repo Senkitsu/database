@@ -1,0 +1,76 @@
+<div class="row">
+    <div class="col-md-12">
+        <h1>О программе</h1>
+        <hr>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-8">
+        <h3>Система управления меню столовой</h3>
+        <p>
+            Данная система предназначена для управления меню столовой и разработана в рамках лабораторной работы
+            по курсу "Базы данных".
+        </p>
+
+        <h4 class="mt-4">Функциональные возможности:</h4>
+        <ul>
+            <li>Управление блюдами (добавление, редактирование, удаление)</li>
+            <li>Фильтрация блюд по категориям</li>
+            <li>Управление категориями блюд</li>
+            <li>Управление ингредиентами</li>
+            <li>Связывание блюд с ингредиентами</li>
+            <li>Просмотр состава блюд</li>
+        </ul>
+
+        <h4 class="mt-4">Используемые технологии:</h4>
+        <ul>
+            <li><strong>Node.js</strong> - серверная платформа</li>
+            <li><strong>Express</strong> - веб-фреймворк</li>
+            <li><strong>PostgreSQL</strong> - система управления базами данных</li>
+            <li><strong>Handlebars</strong> - шаблонизатор</li>
+            <li><strong>Bootstrap 5</strong> - CSS фреймворк</li>
+        </ul>
+
+        <h4 class="mt-4">Архитектура:</h4>
+        <p>
+            Приложение построено по паттерну <strong>MVC (Model-View-Controller)</strong>:
+        </p>
+        <ul>
+            <li><strong>Model</strong> - База данных PostgreSQL с таблицами categories, dishes, ingredients, dish_ingredients</li>
+            <li><strong>View</strong> - Представления Handlebars (.hbs файлы)</li>
+            <li><strong>Controller</strong> - Контроллеры Node.js для обработки запросов</li>
+        </ul>
+
+        <h4 class="mt-4">Структура базы данных:</h4>
+        <p>База данных содержит 4 взаимосвязанные таблицы:</p>
+        <ul>
+            <li><strong>categories</strong> - категории блюд</li>
+            <li><strong>dishes</strong> - блюда меню</li>
+            <li><strong>ingredients</strong> - ингредиенты</li>
+            <li><strong>dish_ingredients</strong> - связь между блюдами и ингредиентами (многие ко многим)</li>
+        </ul>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Лабораторная работа</h5>
+                <p class="card-text">
+                    <strong>Тема:</strong> Создание меню для столовой<br>
+                    <strong>Курс:</strong> Базы данных<br>
+                    <strong>Год:</strong> 2024
+                </p>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-body">
+                <h5 class="card-title">Контакты</h5>
+                <p class="card-text">
+                    Для вопросов и предложений обращайтесь к преподавателю курса.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
