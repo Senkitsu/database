@@ -3,49 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
+    <title>{{title}} - Расписание института</title>
+    
+    <!-- Bootstrap 5 CSS (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <!-- Ваши стили -->
     <link rel="stylesheet" href="/css/style.css">
+    
+    <style>
+        body {
+            padding-top: 20px;
+            background-color: #f8f9fa;
+        }
+        .navbar-brand {
+            font-weight: bold;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .footer {
+            margin-top: 50px;
+            padding: 20px 0;
+            background-color: #f8f9fa;
+            border-top: 1px solid #dee2e6;
+        }
+        .table-hover tbody tr:hover {
+            background-color: rgba(0, 123, 255, 0.05);
+        }
+    </style>
 </head>
 <body>
+    <!-- Навигация -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
         <div class="container">
-            <a class="navbar-brand" href="/">Столовая</a>
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-calendar-week"></i> Расписание института
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link {{#if (eq activePage 'home')}}active{{/if}}" href="/">Главная</a>
+                        <a class="nav-link {{#ifEquals activePage 'home'}}active{{/ifEquals}}" 
+                           href="/">
+                            <i class="bi bi-house"></i> Главная
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{#if (eq activePage 'dishes')}}active{{/if}}" href="/dishes">Меню</a>
+                        <a class="nav-link {{#ifEquals activePage 'schedule'}}active{{/ifEquals}}" 
+                           href="/schedule">
+                            <i class="bi bi-calendar3"></i> Расписание
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{#if (eq activePage 'categories')}}active{{/if}}" href="/categories">Категории</a>
+                        <a class="nav-link {{#ifEquals activePage 'courses'}}active{{/ifEquals}}" 
+                           href="/schedule/courses">
+                            <i class="bi bi-book"></i> Дисциплины
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{#if (eq activePage 'ingredients')}}active{{/if}}" href="/ingredients">Ингредиенты</a>
+                        <a class="nav-link {{#ifEquals activePage 'teachers'}}active{{/ifEquals}}" 
+                           href="/teachers">
+                            <i class="bi bi-person-badge"></i> Преподаватели
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{#if (eq activePage 'about')}}active{{/if}}" href="/about">О программе</a>
+                        <a class="nav-link {{#ifEquals activePage 'groups'}}active{{/ifEquals}}" 
+                           href="/schedule/groups">
+                            <i class="bi bi-people"></i> Группы
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{#ifEquals activePage 'classrooms'}}active{{/ifEquals}}" 
+                           href="/schedule/classrooms">
+                            <i class="bi bi-building"></i> Аудитории
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
+    <!-- Основной контент -->
     <div class="container">
+        {{#if success}}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{success}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {{/if}}
+        
+        {{#if error}}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{error}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        {{/if}}
+        
+        <!-- Заголовок -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1>{{title}}</h1>
+            {{#if addButton}}
+            <a href="{{addButton.url}}" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> {{addButton.text}}
+            </a>
+            {{/if}}
+        </div>
+        
+        <!-- Контент страницы -->
         {{{body}}}
     </div>
 
-    <footer class="mt-5 py-3 bg-light">
+    <!-- Подвал -->
+    <footer class="footer mt-5">
         <div class="container text-center">
-            <p class="text-muted mb-0">&copy; 2024 Система управления меню столовой</p>
+            <p class="text-muted mb-0">
+                <i class="bi bi-c-circle"></i> 2024 Система расписания института. 
+                <span class="text-muted">Версия 1.0</span>
+            </p>
         </div>
     </footer>
 
+    <!-- Bootstrap JS (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Ваши скрипты -->
+    <script src="/js/script.js"></script>
+    
+    <script>
+        // Автоматическое скрытие алертов через 5 секунд
+        setTimeout(() => {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                const bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            });
+        }, 5000);
+    </script>
 </body>
 </html>

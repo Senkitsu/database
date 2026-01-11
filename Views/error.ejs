@@ -1,0 +1,17 @@
+<%- include('layout', {body: `
+    <div class="error-container" style="text-align: center; padding: 40px;">
+        <h1 style="color: #667eea; margin-bottom: 20px;"><%= title %></h1>
+        <p style="font-size: 1.2rem; margin-bottom: 30px;"><%= message %></p>
+        
+        <% if (error && error.stack) { %>
+            <details style="margin: 20px 0; text-align: left;">
+                <summary>Подробности ошибки</summary>
+                <pre style="background: #f5f5f5; padding: 15px; border-radius: 5px; overflow: auto; max-height: 300px;">
+<%= error.stack %>
+                </pre>
+            </details>
+        <% } %>
+        
+        <a href="/" class="btn btn-primary">Вернуться на главную</a>
+    </div>
+`}) %>

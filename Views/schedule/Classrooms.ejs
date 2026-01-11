@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1><%= title %></h1>
+        
+        <div class="actions">
+            <a href="/schedule/classrooms/add" class="btn btn-primary">Добавить аудиторию</a>
+            <a href="/schedule" class="btn btn-secondary">Назад к расписанию</a>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Номер</th>
+                        <th>Тип</th>
+                        <th>Вместимость</th>
+                        <th>Оборудование</th>
+                        <th>Занятий в расписании</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% classrooms.forEach(classroom => { %>
+                    <tr>
+                        <td><%= classroom.number %></td>
+                        <td><%= classroom.type %></td>
+                        <td><%= classroom.capacity %></td>
+                        <td><%= classroom.equipment %></td>
+                        <td><%= classroom.schedule_count %></td>
+                        <td class="actions">
+                            <a href="/schedule/classrooms/<%= classroom.id %>/edit" class="btn btn-edit">Редактировать</a>
+                            <form action="/schedule/classrooms/<%= classroom.id %>/delete" method="POST" class="inline-form">
+                                <button type="submit" class="btn btn-delete" onclick="return confirm('Удалить аудиторию?')">Удалить</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

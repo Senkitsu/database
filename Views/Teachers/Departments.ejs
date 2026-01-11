@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1><%= title %></h1>
+        
+        <div class="actions">
+            <a href="/teachers/departments/add" class="btn btn-primary">Добавить кафедру</a>
+            <a href="/teachers" class="btn btn-secondary">Назад к преподавателям</a>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Факультет</th>
+                        <th>Заведующий</th>
+                        <th>Телефон</th>
+                        <th>Email</th>
+                        <th>Преподавателей</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% departments.forEach(department => { %>
+                    <tr>
+                        <td><%= department.name %></td>
+                        <td><%= department.faculty_name %></td>
+                        <td><%= department.head_name %></td>
+                        <td><%= department.phone %></td>
+                        <td><%= department.email %></td>
+                        <td><%= department.teacher_count %></td>
+                        <td class="actions">
+                            <a href="/teachers/departments/<%= department.id %>/edit" class="btn btn-edit">Редактировать</a>
+                            <form action="/teachers/departments/<%= department.id %>/delete" method="POST" class="inline-form">
+                                <button type="submit" class="btn btn-delete" onclick="return confirm('Удалить кафедру?')">Удалить</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

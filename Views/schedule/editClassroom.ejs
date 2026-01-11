@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1><%= title %></h1>
+        
+        <form method="POST" class="form">
+            <div class="form-group">
+                <label for="number">Номер аудитории:</label>
+                <input type="text" id="number" name="number" value="<%= classroom.number %>" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="type">Тип аудитории:</label>
+                <select id="type" name="type" required>
+                    <option value="lecture" <%= classroom.type == 'lecture' ? 'selected' : '' %>>Лекционная</option>
+                    <option value="practice" <%= classroom.type == 'practice' ? 'selected' : '' %>>Практическая</option>
+                    <option value="lab" <%= classroom.type == 'lab' ? 'selected' : '' %>>Лабораторная</option>
+                    <option value="sport" <%= classroom.type == 'sport' ? 'selected' : '' %>>Спортивный зал</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="capacity">Вместимость:</label>
+                <input type="number" id="capacity" name="capacity" value="<%= classroom.capacity %>" required min="1">
+            </div>
+            
+            <div class="form-group">
+                <label for="equipment">Оборудование:</label>
+                <textarea id="equipment" name="equipment" rows="3"><%= classroom.equipment || '' %></textarea>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <a href="/schedule/classrooms" class="btn btn-secondary">Отмена</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1><%= title %></h1>
+        
+        <form method="POST" class="form">
+            <div class="form-group">
+                <label for="name">Название дисциплины:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="department_id">Кафедра:</label>
+                <select id="department_id" name="department_id" required>
+                    <option value="">Выберите кафедру</option>
+                    <% departments.forEach(department => { %>
+                    <option value="<%= department.id %>"><%= department.name %></option>
+                    <% }); %>
+                </select>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="hours_lecture">Лекционные часы:</label>
+                    <input type="number" id="hours_lecture" name="hours_lecture" value="0" min="0">
+                </div>
+                
+                <div class="form-group">
+                    <label for="hours_practice">Практические часы:</label>
+                    <input type="number" id="hours_practice" name="hours_practice" value="0" min="0">
+                </div>
+                
+                <div class="form-group">
+                    <label for="hours_lab">Лабораторные часы:</label>
+                    <input type="number" id="hours_lab" name="hours_lab" value="0" min="0">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">Описание:</label>
+                <textarea id="description" name="description" rows="4"></textarea>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Добавить</button>
+                <a href="/schedule/courses" class="btn btn-secondary">Отмена</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

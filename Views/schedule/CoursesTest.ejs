@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Тест - Дисциплины</title>
+</head>
+<body>
+    <h1>Дисциплины (тест)</h1>
+    
+    <p>Количество дисциплин: <%= courses ? courses.length : 0 %></p>
+    
+    <% if (courses && courses.length > 0) { %>
+        <ul>
+        <% for (let i = 0; i < courses.length; i++) { %>
+            <li><%= courses[i].id %>. <%= courses[i].name %></li>
+        <% } %>
+        </ul>
+    <% } else { %>
+        <p>Нет дисциплин</p>
+    <% } %>
+    
+    <a href="/schedule">К расписанию</a> | 
+    <a href="/">На главную</a>
+</body>
+</html>

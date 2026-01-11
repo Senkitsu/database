@@ -240,3 +240,4 @@ exports.deleteDepartment = async (req, res) => {
         res.status(500).send('Ошибка при удалении кафедры');
     }
 };
+module.exports = exports;

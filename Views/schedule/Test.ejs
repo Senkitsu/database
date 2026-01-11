@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Тестовая страница</title>
+</head>
+<body>
+    <h1>Тест EJS</h1>
+    <p>Если эта страница отображается, значит EJS работает.</p>
+    
+    <h2>Данные из контроллера:</h2>
+    <p>Заголовок: <%= title %></p>
+    <p>Количество занятий: <%= schedule ? schedule.length : 0 %></p>
+    
+    <h3>Первые 5 занятий:</h3>
+    <% if (schedule && schedule.length > 0) { %>
+        <ul>
+        <% for (let i = 0; i < Math.min(schedule.length, 5); i++) { %>
+            <li>
+                День <%= schedule[i].day_of_week %>: 
+                <%= schedule[i].start_time %> - 
+                <%= schedule[i].course_name || 'Без названия' %>
+            </li>
+        <% } %>
+        </ul>
+    <% } else { %>
+        <p>Нет данных о занятиях</p>
+    <% } %>
+    
+    <a href="/">На главную</a>
+</body>
+</html>

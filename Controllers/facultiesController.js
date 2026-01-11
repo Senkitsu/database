@@ -118,3 +118,4 @@ exports.deleteFaculty = async (req, res) => {
         res.status(500).send('Ошибка при удалении факультета');
     }
 };
+module.exports = exports;

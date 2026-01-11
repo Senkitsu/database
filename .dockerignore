@@ -1,41 +1,9 @@
-# Зависимости
 node_modules
 npm-debug.log
-yarn-error.log
-
-# Git
 .git
 .gitignore
-
-# Документация
 README.md
-USER_GUIDE.md
-PROJECT_SUMMARY.md
-*.md
-
-# Docker файлы (не нужны внутри контейнера)
-Dockerfile
-docker-compose.yml
-.dockerignore
-
-# Переменные окружения
 .env
-
-# Логи
-*.log
-logs
-
-# Временные файлы
-*.tmp
-tmp/
-temp/
-
-# Системные файлы
+.nyc_output
+coverage
 .DS_Store
-Thumbs.db
-
-# IDE
-.idea
-.vscode
-*.swp
-*.swo

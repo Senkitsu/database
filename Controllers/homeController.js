@@ -13,3 +13,4 @@ exports.getAbout = (req, res) => {
         activePage: 'about'
     });
 };
+module.exports = exports;
